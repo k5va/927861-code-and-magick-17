@@ -68,6 +68,11 @@ var getFillColor = function(name) {
  * @param {CanvasRenderingContext2D} ctx — canvas rendering context
  * @param {string} name - player's name
  * @param {number} time - player's time
+ * @param {number} x - bar's x coordinate
+ * @param {number} y - bar's y coordinate
+ * @param {number} width - bar's width
+ * @param {number} height - bar's height
+ * @param {string} color - bar's color
  */
 var renderBar = function(ctx, name, time, x, y, width, height, color) {
   ctx.fillStyle = color;

@@ -15,7 +15,7 @@ var TEXT_OFFSET = 20;
 var BAR_HEIGHT = 150;
 var BAR_WIDTH = 40;
 var BAR_GAP = 50;
-var PLAYER_BAR_COLOR = 'rgba(0, 0, 255,'; //alfa will be added to color
+var PLAYER_BAR_COLOR = 'rgba(0, 0, 255,'; // alfa will be added to color
 var CURRENT_PLAYER_BAR_COLOR = 'rgba(255, 0, 0, 1)';
 var CURRENT_PLAYER_NAME = 'Вы';
 
@@ -26,7 +26,7 @@ var CURRENT_PLAYER_NAME = 'Вы';
  * @param {number} y - cloud's Y coordinate
  * @param {string} color - cloud's fill color
  */
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
@@ -38,7 +38,7 @@ var renderCloud = function(ctx, x, y, color) {
  * @param {number} y - message's Y coordinate
  * @param {string} font - message's font
  */
-var renderMessage = function(ctx, x, y, font) {
+var renderMessage = function (ctx, x, y, font) {
   ctx.font = font;
   ctx.fillStyle = TEXT_COLOR;
   ctx.fillText('Ура вы победили!', x, y);
@@ -48,20 +48,20 @@ var renderMessage = function(ctx, x, y, font) {
 /**
  * Returns maximum value of an array
  * @param {object} values - array of values
- * @returns {} - array's maximum value
+ * @return {number} - array's maximum value
  */
-var getMaxValue = function(values) {
+var getMaxValue = function (values) {
   return Math.max.apply(Math, values);
-}
+};
 
 /**
  * Returns fill color for given player
  * @param {string} name - player's name
- * @returns {string} - fill color
+ * @return {string} - fill color
  */
-var getFillColor = function(name) {
+var getFillColor = function (name) {
   return name === CURRENT_PLAYER_NAME ? CURRENT_PLAYER_BAR_COLOR : PLAYER_BAR_COLOR + Math.random() + ')';
-}
+};
 
 /**
  * Renders a bar
@@ -74,15 +74,15 @@ var getFillColor = function(name) {
  * @param {number} height - bar's height
  * @param {string} color - bar's color
  */
-var renderBar = function(ctx, name, time, x, y, width, height, color) {
+var renderBar = function (ctx, name, time, x, y, width, height, color) {
   ctx.fillStyle = color;
-  //render the bar
+  // render the bar
   ctx.fillRect(x, y, width, height);
   ctx.fillStyle = TEXT_COLOR;
   ctx.textBaseline = 'bottom';
-  //render player's name under the bar
+  // render player's name under the bar
   ctx.fillText(name, x, y + height + TEXT_OFFSET);
-  //render player's time above the bar
+  // render player's time above the bar
   ctx.textBaseline = 'hanging';
   ctx.fillText(Math.floor(time), x, y - TEXT_OFFSET);
 };
@@ -94,20 +94,20 @@ var renderBar = function(ctx, name, time, x, y, width, height, color) {
  * @param {object} names - players' names array
  * @param {object} times - players' times array
  */
-var renderBarChart = function(ctx, names, times) {
+var renderBarChart = function (ctx, names, times) {
   var maxTime = getMaxValue(times);
 
   for (var i = 0; i < names.length; i++) {
     var currentHeight = times[i] * BAR_HEIGHT / maxTime;
     renderBar(
-      ctx,
-      names[i],
-      times[i],
-      CLOUD_X + CLOUD_PADDING_LEFT + (BAR_WIDTH + BAR_GAP) * i,
-      CLOUD_HEIGHT - currentHeight - TEXT_OFFSET,
-      BAR_WIDTH,
-      currentHeight,
-      getFillColor(names[i])
+        ctx,
+        names[i],
+        times[i],
+        CLOUD_X + CLOUD_PADDING_LEFT + (BAR_WIDTH + BAR_GAP) * i,
+        CLOUD_HEIGHT - currentHeight - TEXT_OFFSET,
+        BAR_WIDTH,
+        currentHeight,
+        getFillColor(names[i])
     );
   }
 };
@@ -116,15 +116,15 @@ var renderBarChart = function(ctx, names, times) {
  * Renders statistics at the end of the game
  * @param {CanvasRenderingContext2D} ctx — canvas rendering context
  * @param {object} names - players' names array
- * @param {object} names - players' finish times (in ms) array. Should match the names array
+ * @param {object} times - players' finish times (in ms) array. Should match the names array
  */
-window.renderStatistics = function(ctx, names, times) {
-  //draw cloud's shadow
+window.renderStatistics = function (ctx, names, times) {
+  // draw cloud's shadow
   renderCloud(ctx, CLOUD_X + CLOUD_SHADOW_OFFSET, CLOUD_Y + CLOUD_SHADOW_OFFSET, CLOUD_SHADOW_COLOR);
-  //draw cloud
+  // draw cloud
   renderCloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
-  //render win message
+  // render win message
   renderMessage(ctx, CLOUD_X + CLOUD_PADDING_LEFT, CLOUD_Y + CLOUD_PADDING_TOP, TEXT_STYLE);
-  //render bar chart
+  // render bar chart
   renderBarChart(ctx, names, times);
 };

@@ -14,7 +14,7 @@ var showSetupBlock = function () {
  * @return {object} - random element of the given array
  */
 var getRandomElement = function (elements) {
-  return elements[Math.floor(Math.random() * (elements.length - 1))];
+  return elements[Math.floor(Math.random() * elements.length)];
 };
 
 /**

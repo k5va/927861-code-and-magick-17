@@ -22,7 +22,7 @@ var getRandomElement = function (elements) {
  * Generates wizards' data
  * @return {Array} - wizard objects array
  */
-var getWizardsData = function () {
+var generateWizardsData = function () {
   // create mock data
   var WIZARDS_NUMBER = 4;
   var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -80,6 +80,6 @@ var renderWizards = function (wizards) {
 };
 
 showBlock('.setup');
-renderWizards(getWizardsData());
+renderWizards(generateWizardsData());
 showBlock('.setup-similar');
 

@@ -85,3 +85,14 @@ showBlock('.setup');
 renderWizards(generateWizardsData(WIZARDS_NUMBER));
 showBlock('.setup-similar');
 
+var setupOpenElement = document.querySelector('.setup-open');
+var setupElement = document.querySelector('.setup');
+var setupCloseElement = setupElement.querySelector('.setup-close');
+
+setupOpenElement.addEventListener('click', function () {
+  setupElement.classList.remove('hidden');
+});
+
+setupCloseElement.addEventListener('click', function () {
+  setupElement.classList.add('hidden');
+});

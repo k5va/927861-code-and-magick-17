@@ -1,5 +1,7 @@
 'use strict';
 
+var WIZARDS_NUMBER = 4;
+
 /**
  * Shows block
  * @param {string} blockSelector - selector for the block to show
@@ -20,11 +22,11 @@ var getRandomElement = function (elements) {
 
 /**
  * Generates wizards' data
+ * @param {number} wizardsNumber - number of wizards to generate
  * @return {Array} - wizard objects array
  */
-var generateWizardsData = function () {
+var generateWizardsData = function (wizardsNumber) {
   // create mock data
-  var WIZARDS_NUMBER = 4;
   var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)',
@@ -33,7 +35,7 @@ var generateWizardsData = function () {
   // initialize wizards data array
   var wizards = [];
   // populate wizards with data
-  for (var i = 0; i < WIZARDS_NUMBER; i++) {
+  for (var i = 0; i < wizardsNumber; i++) {
     wizards.push({
       name: getRandomElement(FIRST_NAMES) + ' ' + getRandomElement(SECOND_NAMES),
       coatColor: getRandomElement(COAT_COLORS),
@@ -80,6 +82,6 @@ var renderWizards = function (wizards) {
 };
 
 showBlock('.setup');
-renderWizards(generateWizardsData());
+renderWizards(generateWizardsData(WIZARDS_NUMBER));
 showBlock('.setup-similar');
 

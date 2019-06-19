@@ -5,6 +5,8 @@ var KEY_CODES = {
   ESC: 27,
   ENTER: 13
 };
+var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)',
+  'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
 /**
  * Shows block
@@ -93,6 +95,8 @@ var setupOpenElement = document.querySelector('.setup-open');
 var setupOpenIcon = setupOpenElement.querySelector('.setup-open-icon');
 var setupElement = document.querySelector('.setup');
 var setupCloseElement = setupElement.querySelector('.setup-close');
+var setupWizardElement = document.querySelector('.setup-wizard');
+var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
 
 /**
  * Hides setup dialog on Esc pressed handler
@@ -139,4 +143,9 @@ setupCloseElement.addEventListener('keydown', function (evt) {
   if (evt.keyCode === KEY_CODES.ENTER) {
     hideSetup();
   }
+});
+
+// change wizard's coat color
+wizardCoatElement.addEventListener('click', function () {
+  wizardCoatElement.style.fill = getRandomElement(WIZARD_COAT_COLORS);
 });

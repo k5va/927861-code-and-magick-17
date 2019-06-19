@@ -22,7 +22,7 @@ var showBlock = function (blockSelector) {
  * @param {Array} elements - array of some elements
  * @return {object} - random element of the given array
  */
-var getRandomElement = function (elements) {
+var getRandomElementFromArray = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
 };
 
@@ -43,9 +43,9 @@ var generateWizardsData = function (wizardsNumber) {
   // populate wizards with data
   for (var i = 0; i < wizardsNumber; i++) {
     wizards.push({
-      name: getRandomElement(FIRST_NAMES) + ' ' + getRandomElement(SECOND_NAMES),
-      coatColor: getRandomElement(COAT_COLORS),
-      eyesColor: getRandomElement(EYES_COLORS)
+      name: getRandomElementFromArray(FIRST_NAMES) + ' ' + getRandomElementFromArray(SECOND_NAMES),
+      coatColor: getRandomElementFromArray(COAT_COLORS),
+      eyesColor: getRandomElementFromArray(EYES_COLORS)
     });
   }
 
@@ -147,5 +147,5 @@ setupCloseElement.addEventListener('keydown', function (evt) {
 
 // change wizard's coat color
 wizardCoatElement.addEventListener('click', function () {
-  wizardCoatElement.style.fill = getRandomElement(WIZARD_COAT_COLORS);
+  wizardCoatElement.style.fill = getRandomElementFromArray(WIZARD_COAT_COLORS);
 });

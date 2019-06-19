@@ -7,6 +7,7 @@ var KEY_CODES = {
 };
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)',
   'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 /**
  * Shows block
@@ -97,6 +98,7 @@ var setupElement = document.querySelector('.setup');
 var setupCloseElement = setupElement.querySelector('.setup-close');
 var setupWizardElement = document.querySelector('.setup-wizard');
 var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
+var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
 
 /**
  * Hides setup dialog on Esc pressed handler
@@ -145,7 +147,24 @@ setupCloseElement.addEventListener('keydown', function (evt) {
   }
 });
 
-// change wizard's coat color
-wizardCoatElement.addEventListener('click', function () {
+/**
+ * Changes wizard's coat color randomly
+ */
+var changeWizardCoatRandom = function () {
   wizardCoatElement.style.fill = getRandomElementFromArray(WIZARD_COAT_COLORS);
+};
+
+wizardCoatElement.addEventListener('click', function () {
+  changeWizardCoatRandom();
+});
+
+/**
+ * Changes wizard's eyes color randomly
+ */
+var changeWizardEyesRandom = function () {
+  wizardEyesElement.style.fill = getRandomElementFromArray(WIZARD_EYES_COLORS);
+};
+
+wizardEyesElement.addEventListener('click', function () {
+  changeWizardEyesRandom();
 });

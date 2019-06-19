@@ -134,3 +134,9 @@ var hideSetup = function () {
 setupCloseElement.addEventListener('click', function () {
   hideSetup();
 });
+
+setupCloseElement.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === KEY_CODES.ENTER) {
+    hideSetup();
+  }
+});

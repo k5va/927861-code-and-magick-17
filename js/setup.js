@@ -101,6 +101,9 @@ var setupWizardElement = setupElement.querySelector('.setup-wizard');
 var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
 var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
 var setupFireballWrapElement = setupElement.querySelector('.setup-fireball-wrap');
+var coatColorInput = setupElement.querySelector('input[name=coat-color]');
+var eyesColorInput = setupElement.querySelector('input[name=eyes-color]');
+var fireballColorInput = setupFireballWrapElement.querySelector('input[name=fireball-color]');
 
 /**
  * Hides setup dialog on Esc pressed handler
@@ -153,7 +156,9 @@ setupCloseElement.addEventListener('keydown', function (evt) {
  * Changes wizard's coat color randomly
  */
 var changeWizardCoatRandom = function () {
-  wizardCoatElement.style.fill = getRandomElementFromArray(WIZARD_COAT_COLORS);
+  var randomColor = getRandomElementFromArray(WIZARD_COAT_COLORS);
+  wizardCoatElement.style.fill = randomColor;
+  coatColorInput.value = randomColor;
 };
 
 wizardCoatElement.addEventListener('click', function () {
@@ -164,7 +169,9 @@ wizardCoatElement.addEventListener('click', function () {
  * Changes wizard's eyes color randomly
  */
 var changeWizardEyesRandom = function () {
-  wizardEyesElement.style.fill = getRandomElementFromArray(WIZARD_EYES_COLORS);
+  var randomColor = getRandomElementFromArray(WIZARD_EYES_COLORS);
+  wizardEyesElement.style.fill = randomColor;
+  eyesColorInput.value = randomColor;
 };
 
 wizardEyesElement.addEventListener('click', function () {
@@ -175,7 +182,9 @@ wizardEyesElement.addEventListener('click', function () {
  * Changes color of fireball randomly
  */
 var changeFireBallColor = function () {
-  setupFireballWrapElement.style.background = getRandomElementFromArray(FIREBALL_COLORS);
+  var randomColor = getRandomElementFromArray(FIREBALL_COLORS);
+  setupFireballWrapElement.style.backgroundColor = randomColor;
+  fireballColorInput.value = randomColor;
 };
 
 setupFireballWrapElement.addEventListener('click', function () {

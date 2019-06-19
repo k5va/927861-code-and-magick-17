@@ -94,9 +94,23 @@ var setupOpenIcon = setupOpenElement.querySelector('.setup-open-icon');
 var setupElement = document.querySelector('.setup');
 var setupCloseElement = setupElement.querySelector('.setup-close');
 
-// show setup
+/**
+ * Hides setup dialog on Esc pressed handler
+ * @param {Event} evt - DOM event object
+ */
+var onSetupEscPressed = function (evt) {
+  // hide setup on Esc pressed, if not username field selected
+  if (evt.keyCode === KEY_CODES.ESC && document.activeElement.name !== 'username') {
+    hideSetup();
+  }
+};
+
+/**
+ * Shows setup dialog
+ */
 var showSetup = function () {
   setupElement.classList.remove('hidden');
+  document.addEventListener('keydown', onSetupEscPressed);
 };
 
 setupOpenElement.addEventListener('click', function () {
@@ -109,10 +123,12 @@ setupOpenIcon.addEventListener('keydown', function (evt) {
   }
 });
 
-
-// hide setup
+/**
+ * Hides setup dialog
+ */
 var hideSetup = function () {
   setupElement.classList.add('hidden');
+  document.removeEventListener('keydown', onSetupEscPressed);
 };
 
 setupCloseElement.addEventListener('click', function () {

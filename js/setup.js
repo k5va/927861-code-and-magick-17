@@ -100,7 +100,7 @@ var setupCloseElement = setupElement.querySelector('.setup-close');
  */
 var onSetupEscPressed = function (evt) {
   // hide setup on Esc pressed, if not username field selected
-  if (evt.keyCode === KEY_CODES.ESC && document.activeElement.name !== 'username') {
+  if (evt.keyCode === KEY_CODES.ESC && !document.activeElement.classList.contains('setup-user-name')) {
     hideSetup();
   }
 };

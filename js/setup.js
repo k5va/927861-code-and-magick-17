@@ -1,6 +1,10 @@
 'use strict';
 
 var WIZARDS_NUMBER = 4;
+var KEY_CODES = {
+  ESC: 27,
+  ENTER: 13
+};
 
 /**
  * Shows block
@@ -86,13 +90,31 @@ renderWizards(generateWizardsData(WIZARDS_NUMBER));
 showBlock('.setup-similar');
 
 var setupOpenElement = document.querySelector('.setup-open');
+var setupOpenIcon = setupOpenElement.querySelector('.setup-open-icon');
 var setupElement = document.querySelector('.setup');
 var setupCloseElement = setupElement.querySelector('.setup-close');
 
-setupOpenElement.addEventListener('click', function () {
+// show setup
+var showSetup = function () {
   setupElement.classList.remove('hidden');
+};
+
+setupOpenElement.addEventListener('click', function () {
+  showSetup();
 });
 
-setupCloseElement.addEventListener('click', function () {
+setupOpenIcon.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === KEY_CODES.ENTER) {
+    showSetup();
+  }
+});
+
+
+// hide setup
+var hideSetup = function () {
   setupElement.classList.add('hidden');
+};
+
+setupCloseElement.addEventListener('click', function () {
+  hideSetup();
 });

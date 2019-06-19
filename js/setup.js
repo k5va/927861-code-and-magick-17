@@ -8,6 +8,7 @@ var KEY_CODES = {
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)',
   'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 /**
  * Shows block
@@ -96,9 +97,10 @@ var setupOpenElement = document.querySelector('.setup-open');
 var setupOpenIcon = setupOpenElement.querySelector('.setup-open-icon');
 var setupElement = document.querySelector('.setup');
 var setupCloseElement = setupElement.querySelector('.setup-close');
-var setupWizardElement = document.querySelector('.setup-wizard');
+var setupWizardElement = setupElement.querySelector('.setup-wizard');
 var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
 var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
+var setupFireballWrapElement = setupElement.querySelector('.setup-fireball-wrap');
 
 /**
  * Hides setup dialog on Esc pressed handler
@@ -167,4 +169,15 @@ var changeWizardEyesRandom = function () {
 
 wizardEyesElement.addEventListener('click', function () {
   changeWizardEyesRandom();
+});
+
+/**
+ * Changes color of fireball randomly
+ */
+var changeFireBallColor = function () {
+  setupFireballWrapElement.style.background = getRandomElementFromArray(FIREBALL_COLORS);
+};
+
+setupFireballWrapElement.addEventListener('click', function () {
+  changeFireBallColor();
 });

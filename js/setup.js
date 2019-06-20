@@ -11,15 +11,6 @@ var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 /**
- * Shows block
- * @param {string} blockSelector - selector for the block to show
- */
-var showBlock = function (blockSelector) {
-  var block = document.querySelector(blockSelector);
-  block.classList.remove('hidden');
-};
-
-/**
  * Returns random element of an array
  * @param {Array} elements - array of some elements
  * @return {object} - random element of the given array
@@ -89,9 +80,7 @@ var renderWizards = function (wizards) {
   setupSimilarList.appendChild(fragment);
 };
 
-showBlock('.setup');
 renderWizards(generateWizardsData(WIZARDS_NUMBER));
-showBlock('.setup-similar');
 
 var setupOpenElement = document.querySelector('.setup-open');
 var setupOpenIcon = setupOpenElement.querySelector('.setup-open-icon');

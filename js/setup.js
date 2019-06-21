@@ -1,7 +1,7 @@
 'use strict';
 
 var WIZARDS_NUMBER = 4;
-var KEY_CODES = {
+var keyCodes = {
   ESC: 27,
   ENTER: 13
 };
@@ -100,7 +100,7 @@ var fireballColorInput = setupFireballWrapElement.querySelector('input[name=fire
  */
 var onSetupEscPressed = function (evt) {
   // hide setup on Esc pressed, if not username field selected
-  if (evt.keyCode === KEY_CODES.ESC && !document.activeElement.classList.contains('setup-user-name')) {
+  if (evt.keyCode === keyCodes.ESC && !document.activeElement.classList.contains('setup-user-name')) {
     hideSetup();
   }
 };
@@ -118,7 +118,7 @@ setupOpenElement.addEventListener('click', function () {
 });
 
 setupOpenIcon.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === KEY_CODES.ENTER) {
+  if (evt.keyCode === keyCodes.ENTER) {
     showSetup();
   }
 });
@@ -136,7 +136,7 @@ setupCloseElement.addEventListener('click', function () {
 });
 
 setupCloseElement.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === KEY_CODES.ENTER) {
+  if (evt.keyCode === keyCodes.ENTER) {
     hideSetup();
   }
 });

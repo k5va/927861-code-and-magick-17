@@ -100,7 +100,7 @@ var fireballColorInput = setupFireballWrapElement.querySelector('input[name=fire
  */
 var onSetupEscPressed = function (evt) {
   // hide setup on Esc pressed, if not username field selected
-  if (evt.keyCode === KeyCodes.ESC && !document.activeElement.classList.contains('setup-user-name')) {
+  if (evt.keyCode === KeyCodes.ESC && !evt.target.classList.contains('setup-user-name')) {
     hideSetup();
   }
 };

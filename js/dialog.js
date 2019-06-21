@@ -25,6 +25,18 @@
   var coatColorInput = setupElement.querySelector('input[name=coat-color]');
   var eyesColorInput = setupElement.querySelector('input[name=eyes-color]');
   var fireballColorInput = setupFireballWrapElement.querySelector('input[name=fireball-color]');
+  var setupElementInitialPosition = {};
+
+  /**
+   * Moves given element to specifeed X, Y position.
+   * @param {HTMLElement} element - HTMlElement object to be moved
+   * @param {*} x - x coordinate
+   * @param {*} y - y coordinate
+   */
+  var moveElementToPosition = function (element, x, y) {
+    element.style.left = x + 'px';
+    element.style.top = y + 'px';
+  };
 
   /**
    * Hides setup dialog on Esc pressed handler
@@ -42,6 +54,10 @@
    */
   var showSetup = function () {
     setupElement.classList.remove('hidden');
+    setupElementInitialPosition = {
+      x: setupElement.offsetLeft,
+      y: setupElement.offsetTop
+    };
     document.addEventListener('keydown', onSetupEscPressed);
   };
 
@@ -60,6 +76,7 @@
    */
   var hideSetup = function () {
     setupElement.classList.add('hidden');
+    moveElementToPosition(setupElement, setupElementInitialPosition.x, setupElementInitialPosition.y);
     document.removeEventListener('keydown', onSetupEscPressed);
   };
 
@@ -110,5 +127,54 @@
 
   setupFireballWrapElement.addEventListener('click', function () {
     changeFireBallColor();
+  });
+
+  var uploadElement = setupElement.querySelector('.upload');
+  uploadElement.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
+
+    var isDragged = false;
+    var setupElementCurrentPosition = {
+      x: setupElement.offsetLeft,
+      y: setupElement.offsetTop
+    };
+    /**
+     * Mouse move handler for upload element
+     * @param {MouseEvent} moveEvt - Mouse event DOM object
+     */
+    var onUploadMouseMove = function (moveEvt) {
+      moveEvt.preventDefault();
+
+      isDragged = true;
+      var shift = {
+        x: moveEvt.clientX - evt.clientX,
+        y: moveEvt.clientY - evt.clientY,
+      };
+
+      moveElementToPosition(setupElement,
+          setupElementCurrentPosition.x + shift.x,
+          setupElementCurrentPosition.y + shift.y);
+    };
+    document.addEventListener('mousemove', onUploadMouseMove);
+
+    /**
+     * Mouse Up handler for upload element
+     * @param {MouseEvent} upEvt - Mouse event DOM object
+     */
+    var onUploadMouseUp = function (upEvt) {
+      upEvt.preventDefault();
+
+      if (isDragged) {
+        var onClickPreventDefault = function (clickEvt) {
+          clickEvt.preventDefault();
+          uploadElement.removeEventListener('click', onClickPreventDefault);
+        };
+        uploadElement.addEventListener('click', onClickPreventDefault);
+      }
+
+      document.removeEventListener('mousemove', onUploadMouseMove);
+      document.removeEventListener('mouseup', onUploadMouseUp);
+    };
+    document.addEventListener('mouseup', onUploadMouseUp);
   });
 })();

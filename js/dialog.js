@@ -1,10 +1,6 @@
 'use strict';
 
 (function () {
-  var dependencies = {
-    utils: window.utils
-  };
-
   var KeyCodes = {
     ESC: 27,
     ENTER: 13
@@ -18,14 +14,11 @@
   var setupOpenIcon = setupOpenElement.querySelector('.setup-open-icon');
   var setupElement = document.querySelector('.setup');
   var setupCloseElement = setupElement.querySelector('.setup-close');
-  var setupWizardElement = setupElement.querySelector('.setup-wizard');
-  var wizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
-  var wizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
-  var setupFireballWrapElement = setupElement.querySelector('.setup-fireball-wrap');
-  var coatColorInput = setupElement.querySelector('input[name=coat-color]');
-  var eyesColorInput = setupElement.querySelector('input[name=eyes-color]');
-  var fireballColorInput = setupFireballWrapElement.querySelector('input[name=fireball-color]');
-  var setupElementInitialPosition = {};
+  var setupPlayerElement = setupElement.querySelector('.setup-player');
+  var coatColorInput = setupPlayerElement.querySelector('input[name=coat-color]');
+  var eyesColorInput = setupPlayerElement.querySelector('input[name=eyes-color]');
+  var fireballColorInput = setupPlayerElement.querySelector('input[name=fireball-color]');
+  var setupElementInitialPosition;
 
   /**
    * Moves given element to specifeed X, Y position.
@@ -90,43 +83,17 @@
     }
   });
 
-  /**
-   * Changes wizard's coat color randomly
-   */
-  var changeWizardCoatRandom = function () {
-    var randomColor = dependencies.utils.getRandomElementFromArray(WIZARD_COAT_COLORS);
-    wizardCoatElement.style.fill = randomColor;
-    coatColorInput.value = randomColor;
-  };
-
-  wizardCoatElement.addEventListener('click', function () {
-    changeWizardCoatRandom();
-  });
-
-  /**
-   * Changes wizard's eyes color randomly
-   */
-  var changeWizardEyesRandom = function () {
-    var randomColor = dependencies.utils.getRandomElementFromArray(WIZARD_EYES_COLORS);
-    wizardEyesElement.style.fill = randomColor;
-    eyesColorInput.value = randomColor;
-  };
-
-  wizardEyesElement.addEventListener('click', function () {
-    changeWizardEyesRandom();
-  });
-
-  /**
-   * Changes color of fireball randomly
-   */
-  var changeFireBallColor = function () {
-    var randomColor = dependencies.utils.getRandomElementFromArray(FIREBALL_COLORS);
-    setupFireballWrapElement.style.backgroundColor = randomColor;
-    fireballColorInput.value = randomColor;
-  };
-
-  setupFireballWrapElement.addEventListener('click', function () {
-    changeFireBallColor();
+  setupPlayerElement.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('wizard-coat')) {
+      coatColorInput.value = window.utils.getRandomElementFromArray(WIZARD_COAT_COLORS);
+      evt.target.style.fill = coatColorInput.value;
+    } else if (evt.target.classList.contains('wizard-eyes')) {
+      eyesColorInput.value = window.utils.getRandomElementFromArray(WIZARD_EYES_COLORS);
+      evt.target.style.fill = eyesColorInput.value;
+    } else if (evt.target.classList.contains('setup-fireball')) {
+      fireballColorInput.value = window.utils.getRandomElementFromArray(FIREBALL_COLORS);
+      evt.target.style.backgroundColor = fireballColorInput.value;
+    }
   });
 
   var uploadElement = setupElement.querySelector('.upload');

@@ -1,10 +1,6 @@
 'use strict';
 
 (function () {
-  var dependencies = {
-    utils: window.utils
-  };
-
   var KeyCodes = {
     ESC: 27,
     ENTER: 13
@@ -94,7 +90,7 @@
    * Changes wizard's coat color randomly
    */
   var changeWizardCoatRandom = function () {
-    var randomColor = dependencies.utils.getRandomElementFromArray(WIZARD_COAT_COLORS);
+    var randomColor = window.utils.getRandomElementFromArray(WIZARD_COAT_COLORS);
     wizardCoatElement.style.fill = randomColor;
     coatColorInput.value = randomColor;
   };
@@ -107,7 +103,7 @@
    * Changes wizard's eyes color randomly
    */
   var changeWizardEyesRandom = function () {
-    var randomColor = dependencies.utils.getRandomElementFromArray(WIZARD_EYES_COLORS);
+    var randomColor = window.utils.getRandomElementFromArray(WIZARD_EYES_COLORS);
     wizardEyesElement.style.fill = randomColor;
     eyesColorInput.value = randomColor;
   };
@@ -120,7 +116,7 @@
    * Changes color of fireball randomly
    */
   var changeFireBallColor = function () {
-    var randomColor = dependencies.utils.getRandomElementFromArray(FIREBALL_COLORS);
+    var randomColor = window.utils.getRandomElementFromArray(FIREBALL_COLORS);
     setupFireballWrapElement.style.backgroundColor = randomColor;
     fireballColorInput.value = randomColor;
   };

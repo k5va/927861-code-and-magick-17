@@ -1,10 +1,6 @@
 'use strict';
 
 (function () {
-  var dependencies = {
-    utils: window.utils
-  };
-
   var WIZARDS_NUMBER = 4;
   // create mock data
   var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -24,10 +20,10 @@
     // populate wizards with data
     for (var i = 0; i < wizardsNumber; i++) {
       wizards.push({
-        name: dependencies.utils.getRandomElementFromArray(FIRST_NAMES) + ' '
-          + dependencies.utils.getRandomElementFromArray(SECOND_NAMES),
-        coatColor: dependencies.utils.getRandomElementFromArray(COAT_COLORS),
-        eyesColor: dependencies.utils.getRandomElementFromArray(EYES_COLORS)
+        name: window.utils.getRandomElementFromArray(FIRST_NAMES) + ' '
+          + window.utils.getRandomElementFromArray(SECOND_NAMES),
+        coatColor: window.utils.getRandomElementFromArray(COAT_COLORS),
+        eyesColor: window.utils.getRandomElementFromArray(EYES_COLORS)
       });
     }
 

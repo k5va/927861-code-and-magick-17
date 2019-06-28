@@ -18,7 +18,7 @@
   var coatColorInput = setupPlayerElement.querySelector('input[name=coat-color]');
   var eyesColorInput = setupPlayerElement.querySelector('input[name=eyes-color]');
   var fireballColorInput = setupPlayerElement.querySelector('input[name=fireball-color]');
-  var setupElementInitialPosition = {};
+  var setupElementInitialPosition;
 
   /**
    * Moves given element to specifeed X, Y position.

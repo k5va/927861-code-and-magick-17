@@ -38,9 +38,30 @@
     setupSimilarList.appendChild(fragment);
   };
 
-  // load similar wizards data from backend
-  window.backend.load(function (wizards) {
-    renderWizards(window.utils.getNRandomElementsFormArray(wizards, WIZARDS_NUMBER));
-  });
+  /**
+   * Wizards load success handler. Renders WIZARDS_NUMBER wizards objects.
+   * @param {Array} wizards - array of loaded wizards objects
+   */
+  var onWizardsLoadSuccess = function (wizards) {
+    renderWizards(window.utils.getNRandomElementsFromArray(wizards, WIZARDS_NUMBER));
+  };
+
+  /**
+   * Wizards load error handler. Displays error message
+   * @param {string} errorMessage - error message
+   */
+  var onWizardsLoadError = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  // load similar wizards data from backend and render them
+  window.backend.load(onWizardsLoadSuccess, onWizardsLoadError);
 
 })();

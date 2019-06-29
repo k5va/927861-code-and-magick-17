@@ -11,12 +11,12 @@
   };
 
   // TODO: Need to return random elements?
-  var getNRandomElementsFormArray = function (elements, n) {
+  var getNRandomElementsFromArray = function (elements, n) {
     return elements.slice(0, n);
   };
 
   window.utils = {
     getRandomElementFromArray: getRandomElementFromArray,
-    getNRandomElementsFormArray: getNRandomElementsFormArray
+    getNRandomElementsFromArray: getNRandomElementsFromArray
   };
 })();

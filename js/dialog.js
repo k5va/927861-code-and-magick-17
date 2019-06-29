@@ -19,6 +19,7 @@
   var coatColorInput = setupPlayerElement.querySelector('input[name=coat-color]');
   var eyesColorInput = setupPlayerElement.querySelector('input[name=eyes-color]');
   var fireballColorInput = setupPlayerElement.querySelector('input[name=fireball-color]');
+  var setupWizardForm = setupElement.querySelector('.setup-wizard-form');
   var setupElementInitialPosition;
 
   /**
@@ -145,5 +146,19 @@
       document.removeEventListener('mouseup', onUploadMouseUp);
     };
     document.addEventListener('mouseup', onUploadMouseUp);
+  });
+
+  setupWizardForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    window.backend.save(
+        new FormData(setupWizardForm),
+        function () { // success handler
+          hideSetup();
+        },
+        function (errorMessage) { // error handler
+          console.log(errorMessage);
+        }
+    );
   });
 })();

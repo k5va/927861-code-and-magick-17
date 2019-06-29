@@ -1,41 +1,68 @@
 'use strict';
 
 (function () {
-  var DATA_URL = 'https://js.dump.academy/code-and-magick/data';
+  var LOAD_DATA_URL = 'https://js.dump.academy/code-and-magick/data';
+  var SAVE_DATA_URL = 'https://js.dump.academy/code-and-magic';
+  var REQUEST_TIMEOUT = 10000; // 10s
 
   /**
-   * Loads wizards data from remote server
-   * @param {function} onLoad - called when data is successfully loaded
-   * @param {function} onError - called on error
+   * Creates XMLHttpRequest object and initialize it.
+   *
+   * @param {function} onLoad - success callback function
+   * @param {function} onError - error callback function
+   * @return {XMLHttpRequest} - XMLHttpRequest object
    */
-  var load = function (onLoad, onError) {
+  var createRequest = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
+    xhr.timeout = REQUEST_TIMEOUT;
+
+    onError = onError || function (errorMessage) { // default error handler
+      throw new Error(errorMessage);
+    };
 
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
         onLoad(xhr.response);
       } else {
-        onError('Ошибка при загрузке похожих волшебников. Статус ответа: '
-          + xhr.status + ' ' + xhr.statusText);
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
-
     xhr.addEventListener('error', function () {
-      onError('Ошибка при загрузке похожих волшебников. Произошла ошибка соединения');
+      onError('Произошла ошибка соединения');
     });
     xhr.addEventListener('timeout', function () {
-      onError('Ошибка при загрузке похожих волшебников. Запрос не успел выполниться за '
-        + xhr.timeout + 'мс');
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
-    xhr.timeout = 10000; // 10s
+    return xhr;
+  };
 
-    xhr.open('GET', DATA_URL);
+  /**
+   * Loads wizards data from remote server
+   * @param {function} onLoad - success callback function
+   * @param {function} onError - error callback function
+   */
+  var load = function (onLoad, onError) {
+    var xhr = createRequest(onLoad, onError);
+    xhr.open('GET', LOAD_DATA_URL);
     xhr.send();
   };
 
+  /**
+   * Loads player's setup data to backend server
+   * @param {FormData} data - data to be loaded
+   * @param {*} onLoad - success callback function
+   * @param {*} onError - error callback function
+   */
+  var save = function (data, onLoad, onError) {
+    var xhr = createRequest(onLoad, onError);
+    xhr.open('POST', SAVE_DATA_URL);
+    xhr.send(data);
+  };
+
   window.backend = {
-    load: load
+    load: load,
+    save: save
   };
 })();

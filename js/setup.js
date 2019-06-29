@@ -65,6 +65,12 @@
     setupSimilarList.appendChild(fragment);
   };
 
-  renderWizards(generateWizardsData(WIZARDS_NUMBER));
+  // renderWizards(generateWizardsData(WIZARDS_NUMBER));
+
+  window.backend.load(function (wizards) {
+    console.log(wizards);
+
+    renderWizards(wizards.slice(0, 4));
+  });
 
 })();

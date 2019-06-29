@@ -15,6 +15,7 @@
   var setupElement = document.querySelector('.setup');
   var setupCloseElement = setupElement.querySelector('.setup-close');
   var setupPlayerElement = setupElement.querySelector('.setup-player');
+  var setupSimilarElement = setupElement.querySelector('.setup-similar');
   var coatColorInput = setupPlayerElement.querySelector('input[name=coat-color]');
   var eyesColorInput = setupPlayerElement.querySelector('input[name=eyes-color]');
   var fireballColorInput = setupPlayerElement.querySelector('input[name=fireball-color]');
@@ -47,6 +48,7 @@
    */
   var showSetup = function () {
     setupElement.classList.remove('hidden');
+    setupSimilarElement.classList.remove('hidden');
     setupElementInitialPosition = {
       x: setupElement.offsetLeft,
       y: setupElement.offsetTop

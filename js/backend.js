@@ -2,7 +2,7 @@
 
 (function () {
   var LOAD_DATA_URL = 'https://js.dump.academy/code-and-magick/data';
-  var SAVE_DATA_URL = 'https://js.dump.academy/code-and-magic';
+  var SAVE_DATA_URL = 'https://js.dump.academy/code-and-magick';
   var REQUEST_TIMEOUT = 10000; // 10s
 
   /**

@@ -156,9 +156,7 @@
         function () { // success handler
           hideSetup();
         },
-        function (errorMessage) { // error handler
-          console.log(errorMessage);
-        }
+        window.utils.displayErrorMessage // error handler
     );
   });
 })();

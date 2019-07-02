@@ -103,7 +103,7 @@
   window.backend.load(onWizardsLoadSuccess, onWizardsLoadError);
 
   window.similarWizards = {
-    update: update
+    update: window.utils.debounce(update)
   };
 
 })();

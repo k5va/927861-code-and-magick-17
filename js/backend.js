@@ -56,8 +56,8 @@
   /**
    * Loads player's setup data to backend server
    * @param {FormData} data - data to be loaded
-   * @param {*} onLoad - success callback function
-   * @param {*} onError - error callback function
+   * @param {function} onLoad - success callback function
+   * @param {function} onError - error callback function
    */
   var save = function (data, onLoad, onError) {
     var xhr = createRequest(onLoad, onError);

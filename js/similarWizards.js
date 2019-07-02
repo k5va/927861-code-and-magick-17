@@ -11,9 +11,7 @@
 
   /**
    * Creates wizard DOM Element from given template and wizard object
-   * @param {Node} wizardTemplate - template for creating wizard element
-   * @param {object} wizard - wizard object containing data
-   *
+   * @param {Object} wizard - wizard object containing data
    * @return {Node} wizardElement - created wizard DOM element
    */
   var createWizardElement = function (wizard) {
@@ -70,6 +68,11 @@
    * @param {string} colorEyes - player's eyes color
    */
   var update = function (colorCoat, colorEyes) {
+    // check if wizards are loaded
+    if (wizards === null) {
+      return;
+    }
+
     renderWizards(
         wizards
           .sort(function (wizardLeft, wizardRight) {

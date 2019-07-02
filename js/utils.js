@@ -10,11 +10,6 @@
     return elements[Math.floor(Math.random() * elements.length)];
   };
 
-  // TODO: Need to return random elements?
-  var getNRandomElementsFromArray = function (elements, n) {
-    return elements.slice(0, n);
-  };
-
   /**
    * Renders given error messsage to the DOM
    * @param {string} errorMessage - error message
@@ -32,7 +27,6 @@
 
   window.utils = {
     getRandomElementFromArray: getRandomElementFromArray,
-    getNRandomElementsFromArray: getNRandomElementsFromArray,
     displayErrorMessage: displayErrorMessage
   };
 })();

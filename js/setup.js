@@ -2,33 +2,6 @@
 
 (function () {
   var WIZARDS_NUMBER = 4;
-  // create mock data
-  var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)',
-    'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-
-  /**
- * Generates wizards' data
- * @param {number} wizardsNumber - number of wizards to generate
- * @return {Array} - wizard objects array
- */
-  var generateWizardsData = function (wizardsNumber) {
-    // initialize wizards data array
-    var wizards = [];
-    // populate wizards with data
-    for (var i = 0; i < wizardsNumber; i++) {
-      wizards.push({
-        name: window.utils.getRandomElementFromArray(FIRST_NAMES) + ' '
-          + window.utils.getRandomElementFromArray(SECOND_NAMES),
-        coatColor: window.utils.getRandomElementFromArray(COAT_COLORS),
-        eyesColor: window.utils.getRandomElementFromArray(EYES_COLORS)
-      });
-    }
-
-    return wizards;
-  };
 
   /**
    * Creates wizard DOM Element from given template and wizard object
@@ -41,8 +14,8 @@
     var wizardElement = wizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardElement;
   };
@@ -65,6 +38,23 @@
     setupSimilarList.appendChild(fragment);
   };
 
-  renderWizards(generateWizardsData(WIZARDS_NUMBER));
+  /**
+   * Wizards load success handler. Renders WIZARDS_NUMBER wizards objects.
+   * @param {Array} wizards - array of loaded wizards objects
+   */
+  var onWizardsLoadSuccess = function (wizards) {
+    renderWizards(window.utils.getNRandomElementsFromArray(wizards, WIZARDS_NUMBER));
+  };
+
+  /**
+   * Wizards load error handler. Displays error message
+   * @param {string} errorMessage - error message
+   */
+  var onWizardsLoadError = function (errorMessage) {
+    window.utils.displayErrorMessage(errorMessage);
+  };
+
+  // load similar wizards data from backend and render them
+  window.backend.load(onWizardsLoadSuccess, onWizardsLoadError);
 
 })();

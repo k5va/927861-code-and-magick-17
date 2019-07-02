@@ -90,15 +90,15 @@
     if (evt.target.classList.contains('wizard-coat')) {
       coatColorInput.value = window.utils.getRandomElementFromArray(WIZARD_COAT_COLORS);
       evt.target.style.fill = coatColorInput.value;
+      window.similarWizards.update(coatColorInput.value, eyesColorInput.value);
     } else if (evt.target.classList.contains('wizard-eyes')) {
       eyesColorInput.value = window.utils.getRandomElementFromArray(WIZARD_EYES_COLORS);
       evt.target.style.fill = eyesColorInput.value;
+      window.similarWizards.update(coatColorInput.value, eyesColorInput.value);
     } else if (evt.target.classList.contains('setup-fireball')) {
       fireballColorInput.value = window.utils.getRandomElementFromArray(FIREBALL_COLORS);
       evt.target.style.backgroundColor = fireballColorInput.value;
     }
-    // TODO: refactor
-    window.similarWizards.update(coatColorInput.value, eyesColorInput.value);
   });
 
   var uploadElement = setupElement.querySelector('.upload');

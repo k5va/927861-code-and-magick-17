@@ -103,6 +103,7 @@
   window.backend.load(onWizardsLoadSuccess, onWizardsLoadError);
 
   window.similarWizards = {
+    // export debounced version
     update: window.utils.debounce(update)
   };
 

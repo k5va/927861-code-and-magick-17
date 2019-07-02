@@ -97,6 +97,8 @@
       fireballColorInput.value = window.utils.getRandomElementFromArray(FIREBALL_COLORS);
       evt.target.style.backgroundColor = fireballColorInput.value;
     }
+    // TODO: refactor
+    window.similarWizards.update(coatColorInput.value, eyesColorInput.value);
   });
 
   var uploadElement = setupElement.querySelector('.upload');
